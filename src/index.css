@@ -1,0 +1,65 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --color-forest: #152B24;
+    --color-ivory: #F4EFE4;
+    --color-gold: #B89858;
+    --color-navy: #1E2936;
+    --color-oxblood: #642E33;
+  }
+
+  body {
+    background-color: #152B24;
+    color: #F4EFE4;
+    font-family: 'Manrope', system-ui, sans-serif;
+  }
+
+  h1, h2, h3, h4, .font-serif {
+    font-family: 'Cormorant Garamond', Georgia, serif;
+  }
+}
+
+/* Custom subtle scrollbar */
+::-webkit-scrollbar {
+  width: 8px;
+}
+::-webkit-scrollbar-track {
+  background: #0E1D18;
+}
+::-webkit-scrollbar-thumb {
+  background: #8C6D37;
+  border-radius: 4px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: #B89858;
+}
+
+/* Subtle luxury utilities */
+.gold-gradient-text {
+  background: linear-gradient(135deg, #F5DFA2 0%, #D4AF37 40%, #B89858 70%, #8C6D37 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.gold-gradient-border {
+  border-image: linear-gradient(to right, rgba(184, 152, 88, 0.1), rgba(184, 152, 88, 0.8), rgba(184, 152, 88, 0.1)) 1;
+}
+
+.bg-linen-pattern {
+  background-color: #152B24;
+  background-image: radial-gradient(rgba(184, 152, 88, 0.08) 1px, transparent 0);
+  background-size: 24px 24px;
+}
+
+/* Smooth motion for users who don't prefer reduced motion */
+@media (prefers-reduced-motion: reduce) {
+  * {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
