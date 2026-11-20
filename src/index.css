@@ -54,8 +54,49 @@
   background-size: 24px 24px;
 }
 
+/* ── Environment utility classes ── */
+.env-ivory {
+  background-color: #F4EFE4;
+  color: #1E2936;
+}
+
+.env-oxblood {
+  background-color: #1A0D0F;
+  color: #F4EFE4;
+}
+
+/* ── Section transition utility ── */
+.section-transition {
+  position: relative;
+}
+.section-transition::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 1px;
+  background: linear-gradient(to right, transparent, rgba(184, 152, 88, 0.4), transparent);
+}
+
+/* ── Hero background image: subtle scale on load, frozen under reduced-motion ── */
+.hero-bg-image {
+  transform-origin: center center;
+  animation: hero-drift 40s ease-in-out infinite alternate;
+  will-change: transform;
+}
+
+@keyframes hero-drift {
+  from { transform: scale(1.0) translateY(0); }
+  to   { transform: scale(1.06) translateY(-12px); }
+}
+
 /* Smooth motion for users who don't prefer reduced motion */
 @media (prefers-reduced-motion: reduce) {
+  .hero-bg-image {
+    animation: none !important;
+    transform: none !important;
+  }
   * {
     animation-duration: 0.01ms !important;
     animation-iteration-count: 1 !important;

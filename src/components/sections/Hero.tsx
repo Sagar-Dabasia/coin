@@ -1,7 +1,8 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { ArrowDownRight, Compass, Sparkles } from 'lucide-react';
 import { LuxuryButton } from '../ui/LuxuryButton';
 import { CoinCanvas } from '../three/CoinCanvas';
+import { useState } from 'react';
 
 export const Hero: React.FC = () => {
   const [heroFlipping, setHeroFlipping] = useState(false);
@@ -14,25 +15,63 @@ export const Hero: React.FC = () => {
   };
 
   return (
-    <section 
-      className="relative min-h-screen pt-28 pb-20 flex flex-col justify-center items-center overflow-hidden bg-forest bg-linen-pattern"
+    <section
+      className="relative min-h-screen pt-28 pb-20 flex flex-col justify-center items-center overflow-hidden"
       aria-label="Hero Introduction"
     >
+      {/* ── Cinematic background image layer ── */}
+      <div
+        className="absolute inset-0 z-0 hero-bg-image"
+        aria-hidden="true"
+        style={{
+          backgroundImage: "url('/images/manor.webp')",
+          backgroundSize: 'cover',
+          backgroundPosition: 'center 30%',
+          backgroundRepeat: 'no-repeat',
+        }}
+      />
+
+      {/* Dark forest-green overlay — preserves legibility and palette */}
+      <div
+        className="absolute inset-0 z-[1]"
+        aria-hidden="true"
+        style={{
+          background:
+            'linear-gradient(160deg, rgba(14,29,24,0.92) 0%, rgba(21,43,36,0.88) 40%, rgba(21,43,36,0.82) 70%, rgba(14,29,24,0.94) 100%)',
+        }}
+      />
+
+      {/* Subtle dot pattern over image */}
+      <div
+        className="absolute inset-0 z-[2] bg-linen-pattern opacity-40 pointer-events-none"
+        aria-hidden="true"
+      />
+
       {/* Editorial Hairline Border Frame */}
-      <div className="absolute inset-4 sm:inset-6 md:inset-8 border border-gold/20 pointer-events-none z-10 hidden sm:block">
-        {/* Ornate corner rosettes */}
-        <div className="absolute -top-1.5 -left-1.5 w-3 h-3 border border-gold bg-forest" />
-        <div className="absolute -top-1.5 -right-1.5 w-3 h-3 border border-gold bg-forest" />
-        <div className="absolute -bottom-1.5 -left-1.5 w-3 h-3 border border-gold bg-forest" />
-        <div className="absolute -bottom-1.5 -right-1.5 w-3 h-3 border border-gold bg-forest" />
+      <div
+        className="absolute inset-5 sm:inset-8 md:inset-10 border border-gold/15 pointer-events-none z-10 hidden sm:block"
+        aria-hidden="true"
+      >
+        <div className="absolute -top-1 -left-1 w-2 h-2 border border-gold/60 bg-forest-dark" />
+        <div className="absolute -top-1 -right-1 w-2 h-2 border border-gold/60 bg-forest-dark" />
+        <div className="absolute -bottom-1 -left-1 w-2 h-2 border border-gold/60 bg-forest-dark" />
+        <div className="absolute -bottom-1 -right-1 w-2 h-2 border border-gold/60 bg-forest-dark" />
       </div>
 
+      {/* Top rule */}
+      <div
+        className="absolute top-0 inset-x-0 h-px bg-gradient-to-r from-transparent via-gold/30 to-transparent pointer-events-none z-10"
+        aria-hidden="true"
+      />
+
+      {/* Content */}
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 w-full z-20 min-w-0">
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-8 items-center w-full min-w-0">
+
           {/* Left Column: Editorial Typography */}
           <div className="lg:col-span-7 space-y-6 text-center lg:text-left w-full min-w-0">
             {/* Tagline Badge */}
-            <div className="inline-flex items-center gap-1.5 sm:gap-2 px-3 py-1 sm:px-3.5 sm:py-1.5 rounded-full border border-gold/40 bg-forest-light/60 backdrop-blur-sm shadow-sm max-w-full">
+            <div className="inline-flex items-center gap-1.5 sm:gap-2 px-3 py-1 sm:px-3.5 sm:py-1.5 rounded-full border border-gold/40 bg-forest-dark/70 backdrop-blur-sm shadow-sm max-w-full">
               <Sparkles className="w-3.5 h-3.5 text-gold shrink-0" />
               <span className="text-[9px] sm:text-xs font-sans tracking-[0.15em] sm:tracking-[0.25em] uppercase text-gold font-semibold truncate sm:whitespace-normal">
                 THE SOVEREIGN TRIBUTE • MMXXVI
@@ -86,12 +125,11 @@ export const Hero: React.FC = () => {
             </div>
           </div>
 
-          {/* Right Column: Prominent 3D Gold Bhumi Coin */}
+          {/* Right Column: 3D Gold Bhumi Coin */}
           <div className="lg:col-span-5 flex flex-col items-center justify-center relative w-full min-w-0">
             <div className="relative w-full max-w-[270px] sm:max-w-sm md:max-w-md aspect-square flex items-center justify-center mx-auto">
               {/* Outer decorative ring */}
               <div className="absolute inset-0 rounded-full border border-dashed border-gold/20 animate-[spin_60s_linear_infinite] pointer-events-none" />
-              
               <CoinCanvas
                 isFlipping={heroFlipping}
                 targetSide={heroSide}
@@ -100,13 +138,12 @@ export const Hero: React.FC = () => {
               />
             </div>
 
-            {/* Quick interactive test button on Hero */}
             <button
               onClick={triggerHeroToss}
               disabled={heroFlipping}
-              className="mt-4 px-4 py-1.5 rounded-full bg-forest-light border border-gold/30 text-xs font-serif tracking-widest uppercase text-gold hover:border-gold hover:bg-forest-light/90 transition-all focus:outline-none focus:ring-1 focus:ring-gold"
+              className="mt-4 px-4 py-1.5 rounded-full bg-forest-dark/80 backdrop-blur-sm border border-gold/30 text-xs font-serif tracking-widest uppercase text-gold hover:border-gold hover:bg-forest-dark transition-all focus:outline-none focus:ring-1 focus:ring-gold"
             >
-              {heroFlipping ? "In Flight..." : "Tap to Toss Coin"}
+              {heroFlipping ? 'In Flight...' : 'Tap to Toss Coin'}
             </button>
           </div>
         </div>
